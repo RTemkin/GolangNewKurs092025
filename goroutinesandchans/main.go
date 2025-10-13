@@ -11,13 +11,15 @@ func mine(ch1 chan int, n int) {
 	fmt.Printf("Конец похода %v\n", n)
 
 	ch1 <- 10
+	fmt.Println("Передал", n)
 }
 
 func main() {
 	coal := 0
-	transferChan := make(chan int)
+	transferChan := make(chan int, 10)
 
 	initTime := time.Now()
+	
 	go mine(transferChan, 1)
 	go mine(transferChan, 2)
 	go mine(transferChan, 3)
