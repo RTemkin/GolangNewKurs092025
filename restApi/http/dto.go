@@ -1,0 +1,41 @@
+package http
+
+import (
+	"encoding/json"
+	"errors"
+	"time"
+)
+
+//DTO == data transfer object - нужен только для того что бы  передавать (принять) запрос
+// с минимальным количеством полей - только необходимые
+
+type TaskDTO struct {
+	Title       string
+	Description string
+}
+
+func (t TaskDTO) ValidateForCreate() error {
+	if t.Title == "" {
+		return errors.New("title is empty")
+	}
+
+	if t.Description == "" {
+		return errors.New("description is empty")
+	}
+
+	return nil
+}
+
+type ErrorDTO struct {
+	Message string
+	Time    time.Time
+}
+
+func (e ErrorDTO) ToString() string {
+	b, err := json.MarshalIndent(e, "", "    ")
+	if err != nil {
+		panic(err)
+	}
+
+	return string(b)
+}
