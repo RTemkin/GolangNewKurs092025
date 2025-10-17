@@ -171,4 +171,3 @@ failed:
 func (h *HTTPHandlers) HandleDeleteTask(w http.ResponseWriter, r *http.Request) {
 
 }
-
