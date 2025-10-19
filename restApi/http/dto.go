@@ -6,8 +6,13 @@ import (
 	"time"
 )
 
+
 //DTO == data transfer object - нужен только для того что бы  передавать (принять) запрос
 // с минимальным количеством полей - только необходимые
+
+type CompleteTaskDTO struct{
+	Compete bool
+}
 
 type TaskDTO struct {
 	Title       string
